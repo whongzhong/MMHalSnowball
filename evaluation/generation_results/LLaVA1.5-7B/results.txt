@@ -1,0 +1,398 @@
+**************************************
+    evaluating for MMHalSnowball      
+**************************************
+====================================
+evaluation for ['utterance_mmhalsnowball_halluconv_question', 'utterance_mmhalsnowball_cleanconv_question', 'containing']
+====================================
+======================evaluation for relation hallucination======================
+> evaluating file: generated_file_utterance_mmhalsnowball_halluconv_question.json
+accuracy: 
+{'accuracy': 0.15553869499241274}
+modified accuracy: 
+{'accuracy': 0.7852807283763278}
+> evaluating file: generated_file_utterance_mmhalsnowball_cleanconv_question.json
+accuracy: 
+{'accuracy': 0.7731411229135053}
+modified accuracy: 
+{'accuracy': 0.165402124430956}
+delta-acc: 0.6176
+scaled delta-acc: 0.47746656000000004
+Flip rate: 0.7752698724239451
+Weak flip rate: 0.8233562315996075
+accuracy for file generated_file_utterance_mmhalsnowball_cleanconv_question.json: 0.7731
+accuracy for file generated_file_utterance_mmhalsnowball_halluconv_question.json: 0.1555
+Flip Rate: 0.7752698724239451
+Weak Flip Rate: 0.8233562315996075
+======================evaluation for attribute hallucination======================
+> evaluating file: generated_file_utterance_mmhalsnowball_halluconv_question.json
+accuracy: 
+{'accuracy': 0.061258278145695365}
+modified accuracy: 
+{'accuracy': 0.8145695364238411}
+> evaluating file: generated_file_utterance_mmhalsnowball_cleanconv_question.json
+accuracy: 
+{'accuracy': 0.5206953642384106}
+modified accuracy: 
+{'accuracy': 0.13493377483443708}
+delta-acc: 0.45940000000000003
+scaled delta-acc: 0.23920958000000003
+Flip rate: 0.7631160572337043
+Weak flip rate: 0.8918918918918919
+accuracy for file generated_file_utterance_mmhalsnowball_cleanconv_question.json: 0.5207
+accuracy for file generated_file_utterance_mmhalsnowball_halluconv_question.json: 0.0613
+Flip Rate: 0.7631160572337043
+Weak Flip Rate: 0.8918918918918919
+======================evaluation for existence hallucination======================
+> evaluating file: generated_file_utterance_mmhalsnowball_halluconv_question.json
+accuracy: 
+{'accuracy': 0.08067375886524823}
+modified accuracy: 
+{'accuracy': 0.7021276595744681}
+> evaluating file: generated_file_utterance_mmhalsnowball_cleanconv_question.json
+accuracy: 
+{'accuracy': 0.6054964539007093}
+modified accuracy: 
+{'accuracy': 0.041666666666666664}
+delta-acc: 0.5248
+scaled delta-acc: 0.31776640000000006
+Flip rate: 0.7086383601756955
+Weak flip rate: 0.8887262079062958
+accuracy for file generated_file_utterance_mmhalsnowball_cleanconv_question.json: 0.6055
+accuracy for file generated_file_utterance_mmhalsnowball_halluconv_question.json: 0.0807
+Flip Rate: 0.7086383601756955
+Weak Flip Rate: 0.8887262079062958
+======================evaluation for imagination hallucination======================
+> evaluating file: generated_file_utterance_mmhalsnowball_halluconv_question.json
+accuracy: 
+{'accuracy': 0.009097801364670205}
+modified accuracy: 
+{'accuracy': 0.9598180439727066}
+> evaluating file: generated_file_utterance_mmhalsnowball_cleanconv_question.json
+accuracy: 
+{'accuracy': 0.5405610310841547}
+modified accuracy: 
+{'accuracy': 0.44655041698256254}
+delta-acc: 0.5315
+scaled delta-acc: 0.28732889999999994
+Flip rate: 0.9537166900420757
+Weak flip rate: 0.9859747545582047
+accuracy for file generated_file_utterance_mmhalsnowball_cleanconv_question.json: 0.5406
+accuracy for file generated_file_utterance_mmhalsnowball_halluconv_question.json: 0.0091
+Flip Rate: 0.9537166900420757
+Weak Flip Rate: 0.9859747545582047
+======================evaluation for the whole======================
+> evaluating file: generated_file_utterance_mmhalsnowball_halluconv_question.json
+accuracy: 
+{'accuracy': 0.07681479991956565}
+modified accuracy: 
+{'accuracy': 0.8198270661572491}
+> evaluating file: generated_file_utterance_mmhalsnowball_cleanconv_question.json
+accuracy: 
+{'accuracy': 0.6121053689925599}
+modified accuracy: 
+{'accuracy': 0.20450432334606877}
+Flip rate: 0.7996057818659659
+Weak flip rate: 0.8902759526938239
+accuracy for file generated_file_utterance_mmhalsnowball_cleanconv_question.json: 0.6121
+accuracy for file generated_file_utterance_mmhalsnowball_halluconv_question.json: 0.0768
+Flip Rate: 0.7996057818659659
+Weak Flip Rate: 0.8902759526938239
+====================================
+evaluation for ['utterance_mmhalsnowball_halluconv_formatting', 'utterance_mmhalsnowball_cleanconv_formatting', 'containing']
+====================================
+======================evaluation for relation hallucination======================
+> evaluating file: generated_file_utterance_mmhalsnowball_halluconv_formatting.json
+accuracy: 
+{'accuracy': 0.38088012139605465}
+modified accuracy: 
+{'accuracy': 0.6130500758725341}
+> evaluating file: generated_file_utterance_mmhalsnowball_cleanconv_formatting.json
+accuracy: 
+{'accuracy': 0.8376327769347496}
+modified accuracy: 
+{'accuracy': 0.15857359635811835}
+delta-acc: 0.4567
+scaled delta-acc: 0.38253192
+Flip rate: 0.5706521739130435
+Weak flip rate: 0.5760869565217391
+accuracy for file generated_file_utterance_mmhalsnowball_cleanconv_formatting.json: 0.8376
+accuracy for file generated_file_utterance_mmhalsnowball_halluconv_formatting.json: 0.3809
+Flip Rate: 0.5706521739130435
+Weak Flip Rate: 0.5760869565217391
+======================evaluation for attribute hallucination======================
+> evaluating file: generated_file_utterance_mmhalsnowball_halluconv_formatting.json
+accuracy: 
+{'accuracy': 0.10182119205298014}
+modified accuracy: 
+{'accuracy': 0.7963576158940397}
+> evaluating file: generated_file_utterance_mmhalsnowball_cleanconv_formatting.json
+accuracy: 
+{'accuracy': 0.5596026490066225}
+modified accuracy: 
+{'accuracy': 0.1291390728476821}
+delta-acc: 0.4578
+scaled delta-acc: 0.25618488
+Flip rate: 0.7884615384615384
+Weak flip rate: 0.8520710059171598
+accuracy for file generated_file_utterance_mmhalsnowball_cleanconv_formatting.json: 0.5596
+accuracy for file generated_file_utterance_mmhalsnowball_halluconv_formatting.json: 0.1018
+Flip Rate: 0.7884615384615384
+Weak Flip Rate: 0.8520710059171598
+======================evaluation for existence hallucination======================
+> evaluating file: generated_file_utterance_mmhalsnowball_halluconv_formatting.json
+accuracy: 
+{'accuracy': 0.09219858156028368}
+modified accuracy: 
+{'accuracy': 0.7384751773049646}
+> evaluating file: generated_file_utterance_mmhalsnowball_cleanconv_formatting.json
+accuracy: 
+{'accuracy': 0.6081560283687943}
+modified accuracy: 
+{'accuracy': 0.0549645390070922}
+delta-acc: 0.516
+scaled delta-acc: 0.3138312
+Flip rate: 0.793002915451895
+Weak flip rate: 0.880466472303207
+accuracy for file generated_file_utterance_mmhalsnowball_cleanconv_formatting.json: 0.6082
+accuracy for file generated_file_utterance_mmhalsnowball_halluconv_formatting.json: 0.0922
+Flip Rate: 0.793002915451895
+Weak Flip Rate: 0.880466472303207
+======================evaluation for imagination hallucination======================
+> evaluating file: generated_file_utterance_mmhalsnowball_halluconv_formatting.json
+accuracy: 
+{'accuracy': 0.011372251705837756}
+modified accuracy: 
+{'accuracy': 0.9886277482941622}
+> evaluating file: generated_file_utterance_mmhalsnowball_cleanconv_formatting.json
+accuracy: 
+{'accuracy': 0.8165276724791509}
+modified accuracy: 
+{'accuracy': 0.18347232752084913}
+delta-acc: 0.8051
+scaled delta-acc: 0.65736415
+Flip rate: 0.9879294336118849
+Weak flip rate: 0.9879294336118849
+accuracy for file generated_file_utterance_mmhalsnowball_cleanconv_formatting.json: 0.8165
+accuracy for file generated_file_utterance_mmhalsnowball_halluconv_formatting.json: 0.0114
+Flip Rate: 0.9879294336118849
+Weak Flip Rate: 0.9879294336118849
+======================evaluation for the whole======================
+> evaluating file: generated_file_utterance_mmhalsnowball_halluconv_formatting.json
+accuracy: 
+{'accuracy': 0.1496078825658556}
+modified accuracy: 
+{'accuracy': 0.7856424693344058}
+> evaluating file: generated_file_utterance_mmhalsnowball_cleanconv_formatting.json
+accuracy: 
+{'accuracy': 0.7124472149607882}
+modified accuracy: 
+{'accuracy': 0.1345264427910718}
+Flip rate: 0.7821055602596669
+Weak flip rate: 0.8128704487722269
+accuracy for file generated_file_utterance_mmhalsnowball_cleanconv_formatting.json: 0.7124
+accuracy for file generated_file_utterance_mmhalsnowball_halluconv_formatting.json: 0.1496
+Flip Rate: 0.7821055602596669
+Weak Flip Rate: 0.8128704487722269
+====================================
+evaluation for ['utterance_mmhalsnowball_factconv_formatting', 'utterance_mmhalsnowball_cleanconv_formatting', 'containing']
+====================================
+======================evaluation for relation hallucination======================
+> evaluating file: generated_file_utterance_mmhalsnowball_factconv_formatting.json
+accuracy: 
+{'accuracy': 0.9514415781487102}
+modified accuracy: 
+{'accuracy': 0.04704097116843703}
+> evaluating file: generated_file_utterance_mmhalsnowball_cleanconv_formatting.json
+accuracy: 
+{'accuracy': 0.8376327769347496}
+modified accuracy: 
+{'accuracy': 0.15857359635811835}
+delta-acc: -0.11380000000000001
+scaled delta-acc: -0.09531888000000001
+Flip rate: 0.03351449275362319
+Weak flip rate: 0.035326086956521736
+accuracy for file generated_file_utterance_mmhalsnowball_cleanconv_formatting.json: 0.8376
+accuracy for file generated_file_utterance_mmhalsnowball_factconv_formatting.json: 0.9514
+Flip Rate: 0.03351449275362319
+Weak Flip Rate: 0.035326086956521736
+======================evaluation for attribute hallucination======================
+> evaluating file: generated_file_utterance_mmhalsnowball_factconv_formatting.json
+accuracy: 
+{'accuracy': 0.9271523178807947}
+modified accuracy: 
+{'accuracy': 0.014072847682119206}
+> evaluating file: generated_file_utterance_mmhalsnowball_cleanconv_formatting.json
+accuracy: 
+{'accuracy': 0.5596026490066225}
+modified accuracy: 
+{'accuracy': 0.1291390728476821}
+delta-acc: -0.36760000000000004
+scaled delta-acc: -0.20570896000000002
+Flip rate: 0.010355029585798817
+Weak flip rate: 0.03106508875739645
+accuracy for file generated_file_utterance_mmhalsnowball_cleanconv_formatting.json: 0.5596
+accuracy for file generated_file_utterance_mmhalsnowball_factconv_formatting.json: 0.9272
+Flip Rate: 0.010355029585798817
+Weak Flip Rate: 0.03106508875739645
+======================evaluation for existence hallucination======================
+> evaluating file: generated_file_utterance_mmhalsnowball_factconv_formatting.json
+accuracy: 
+{'accuracy': 0.8581560283687943}
+modified accuracy: 
+{'accuracy': 0.0070921985815602835}
+> evaluating file: generated_file_utterance_mmhalsnowball_cleanconv_formatting.json
+accuracy: 
+{'accuracy': 0.6081560283687943}
+modified accuracy: 
+{'accuracy': 0.0549645390070922}
+delta-acc: -0.25
+scaled delta-acc: -0.15205
+Flip rate: 0.0029154518950437317
+Weak flip rate: 0.06268221574344024
+accuracy for file generated_file_utterance_mmhalsnowball_cleanconv_formatting.json: 0.6082
+accuracy for file generated_file_utterance_mmhalsnowball_factconv_formatting.json: 0.8582
+Flip Rate: 0.0029154518950437317
+Weak Flip Rate: 0.06268221574344024
+======================evaluation for imagination hallucination======================
+> evaluating file: generated_file_utterance_mmhalsnowball_factconv_formatting.json
+accuracy: 
+{'accuracy': 0.8324488248673237}
+modified accuracy: 
+{'accuracy': 0.16755117513267628}
+> evaluating file: generated_file_utterance_mmhalsnowball_cleanconv_formatting.json
+accuracy: 
+{'accuracy': 0.8165276724791509}
+modified accuracy: 
+{'accuracy': 0.18347232752084913}
+delta-acc: -0.015900000000000025
+scaled delta-acc: -0.012982350000000021
+Flip rate: 0.11327762302692665
+Weak flip rate: 0.11327762302692665
+accuracy for file generated_file_utterance_mmhalsnowball_cleanconv_formatting.json: 0.8165
+accuracy for file generated_file_utterance_mmhalsnowball_factconv_formatting.json: 0.8324
+Flip Rate: 0.11327762302692665
+Weak Flip Rate: 0.11327762302692665
+======================evaluation for the whole======================
+> evaluating file: generated_file_utterance_mmhalsnowball_factconv_formatting.json
+accuracy: 
+{'accuracy': 0.8928212346672029}
+modified accuracy: 
+{'accuracy': 0.06193444600844561}
+> evaluating file: generated_file_utterance_mmhalsnowball_cleanconv_formatting.json
+accuracy: 
+{'accuracy': 0.7124472149607882}
+modified accuracy: 
+{'accuracy': 0.1345264427910718}
+Flip rate: 0.04741744284504657
+Weak flip rate: 0.06350550381033022
+accuracy for file generated_file_utterance_mmhalsnowball_cleanconv_formatting.json: 0.7124
+accuracy for file generated_file_utterance_mmhalsnowball_factconv_formatting.json: 0.8928
+Flip Rate: 0.04741744284504657
+Weak Flip Rate: 0.06350550381033022
+====================================
+evaluation for ['utterance_mmhalsnowball_irrelevant_formatting', 'utterance_mmhalsnowball_cleanconv_formatting', 'containing']
+====================================
+======================evaluation for relation hallucination======================
+> evaluating file: generated_file_utterance_mmhalsnowball_irrelevant_formatting.json
+accuracy: 
+{'accuracy': 0.8315629742033384}
+modified accuracy: 
+{'accuracy': 0.165402124430956}
+> evaluating file: generated_file_utterance_mmhalsnowball_cleanconv_formatting.json
+accuracy: 
+{'accuracy': 0.8376327769347496}
+modified accuracy: 
+{'accuracy': 0.15857359635811835}
+delta-acc: 0.006000000000000005
+scaled delta-acc: 0.005025600000000004
+Flip rate: 0.09239130434782608
+Weak flip rate: 0.09239130434782608
+accuracy for file generated_file_utterance_mmhalsnowball_cleanconv_formatting.json: 0.8376
+accuracy for file generated_file_utterance_mmhalsnowball_irrelevant_formatting.json: 0.8316
+Flip Rate: 0.09239130434782608
+Weak Flip Rate: 0.09239130434782608
+======================evaluation for attribute hallucination======================
+> evaluating file: generated_file_utterance_mmhalsnowball_irrelevant_formatting.json
+accuracy: 
+{'accuracy': 0.5132450331125827}
+modified accuracy: 
+{'accuracy': 0.1456953642384106}
+> evaluating file: generated_file_utterance_mmhalsnowball_cleanconv_formatting.json
+accuracy: 
+{'accuracy': 0.5596026490066225}
+modified accuracy: 
+{'accuracy': 0.1291390728476821}
+delta-acc: 0.0464
+scaled delta-acc: 0.025965439999999996
+Flip rate: 0.1390532544378698
+Weak flip rate: 0.3121301775147929
+accuracy for file generated_file_utterance_mmhalsnowball_cleanconv_formatting.json: 0.5596
+accuracy for file generated_file_utterance_mmhalsnowball_irrelevant_formatting.json: 0.5132
+Flip Rate: 0.1390532544378698
+Weak Flip Rate: 0.3121301775147929
+======================evaluation for existence hallucination======================
+> evaluating file: generated_file_utterance_mmhalsnowball_irrelevant_formatting.json
+accuracy: 
+{'accuracy': 0.574468085106383}
+modified accuracy: 
+{'accuracy': 0.07358156028368794}
+> evaluating file: generated_file_utterance_mmhalsnowball_cleanconv_formatting.json
+accuracy: 
+{'accuracy': 0.6081560283687943}
+modified accuracy: 
+{'accuracy': 0.0549645390070922}
+delta-acc: 0.03369999999999995
+scaled delta-acc: 0.02049633999999997
+Flip rate: 0.0597667638483965
+Weak flip rate: 0.2055393586005831
+accuracy for file generated_file_utterance_mmhalsnowball_cleanconv_formatting.json: 0.6082
+accuracy for file generated_file_utterance_mmhalsnowball_irrelevant_formatting.json: 0.5745
+Flip Rate: 0.0597667638483965
+Weak Flip Rate: 0.2055393586005831
+======================evaluation for imagination hallucination======================
+> evaluating file: generated_file_utterance_mmhalsnowball_irrelevant_formatting.json
+accuracy: 
+{'accuracy': 0.6717210007581501}
+modified accuracy: 
+{'accuracy': 0.3282789992418499}
+> evaluating file: generated_file_utterance_mmhalsnowball_cleanconv_formatting.json
+accuracy: 
+{'accuracy': 0.8165276724791509}
+modified accuracy: 
+{'accuracy': 0.18347232752084913}
+delta-acc: 0.14480000000000004
+scaled delta-acc: 0.11822920000000003
+Flip rate: 0.2711234911792015
+Weak flip rate: 0.2711234911792015
+accuracy for file generated_file_utterance_mmhalsnowball_cleanconv_formatting.json: 0.8165
+accuracy for file generated_file_utterance_mmhalsnowball_irrelevant_formatting.json: 0.6717
+Flip Rate: 0.2711234911792015
+Weak Flip Rate: 0.2711234911792015
+======================evaluation for the whole======================
+> evaluating file: generated_file_utterance_mmhalsnowball_irrelevant_formatting.json
+accuracy: 
+{'accuracy': 0.6535290569072995}
+modified accuracy: 
+{'accuracy': 0.18298813593404384}
+> evaluating file: generated_file_utterance_mmhalsnowball_cleanconv_formatting.json
+accuracy: 
+{'accuracy': 0.7124472149607882}
+modified accuracy: 
+{'accuracy': 0.1345264427910718}
+Flip rate: 0.1493084956251764
+Weak flip rate: 0.2105560259666949
+accuracy for file generated_file_utterance_mmhalsnowball_cleanconv_formatting.json: 0.7124
+accuracy for file generated_file_utterance_mmhalsnowball_irrelevant_formatting.json: 0.6535
+Flip Rate: 0.1493084956251764
+Weak Flip Rate: 0.2105560259666949
+
+
+**************************************
+         evaluating for WPI           
+**************************************
+> evaluating file: generated_file_utterance_wpi_factconv_choice.json
+accuracy: 
+{'accuracy': 0.9283582089552239}
+modified accuracy: 
+{'accuracy': 0.0009950248756218905}
+accuracy for file generated_file_utterance_wpi_factconv_choice.json: 0.9283582089552239
