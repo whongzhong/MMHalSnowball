@@ -36,27 +36,27 @@ The annotation structure of one sample in `{task}_test.json` is as follows:
 ```json
     {
         "question": "Is there a tree in this image?",
-        "imageId": "2380767", # image id from the GQA dataset
-        "answer": "no", # The answer that is consistent with the image
-        "sample_id": "1016685", # sample id from the GQA dataset
+        "imageId": "2380767", // image id from the GQA dataset
+        "answer": "no", // The answer that is consistent with the image
+        "sample_id": "1016685", // sample id from the GQA dataset
         "hallucination_type": "imagination",
         "fact": "There is no tree in the image.", 
-        "hallucinatory_fact": "There is a tree in the image.", # The modified fact sentence that is inconsistent with the image
-        "modified_answer": "yes", # The hallucinatory answer that is consistent with the modified fact sentence
-        "image_description": "In the image, a man is playing with a yellow frisbee under a bright blue sky. He has short hair, brown eyebrows, and blue eyes. The man is wearing a red shirt with white writing on it. His face shows a windblown cheek and closed lips. The frisbee is seen in the air, and the man is looking at it attentively. The bright clothing, specifically the red shirt, stands out in the photo, adding vibrancy to the scene.", # The image description that is consistent with the fact sentence
-        "modified_description": "In the image, a man is playing with a yellow frisbee under a bright blue sky. He is wearing a red shirt with white writing on it. The man has short hair and blue eyes, with a windblown cheek and a closed mouth. In the background, there is a tree. The scene captures the joy of the man as he skillfully throws and catches the frisbee, enjoying the outdoors in the serene surroundings." # The hallucinatory description that is consistent with the modified fact sentence
+        "hallucinatory_fact": "There is a tree in the image.", // The modified fact sentence that is inconsistent with the image
+        "modified_answer": "yes", // The hallucinatory answer that is consistent with the modified fact sentence
+        "image_description": "In the image, a man is playing with a yellow frisbee under a bright blue sky. He has short hair, brown eyebrows, and blue eyes. The man is wearing a red shirt with white writing on it. His face shows a windblown cheek and closed lips. The frisbee is seen in the air, and the man is looking at it attentively. The bright clothing, specifically the red shirt, stands out in the photo, adding vibrancy to the scene.", // The image description that is consistent with the fact sentence
+        "modified_description": "In the image, a man is playing with a yellow frisbee under a bright blue sky. He is wearing a red shirt with white writing on it. The man has short hair and blue eyes, with a windblown cheek and a closed mouth. In the background, there is a tree. The scene captures the joy of the man as he skillfully throws and catches the frisbee, enjoying the outdoors in the serene surroundings." // The hallucinatory description that is consistent with the modified fact sentence
     },
 ```
 The structure of one sample in `utterance_{evaluation_task}_{conversation_setting}_{prompt_setting}.json` is as follows:
 ```json
-"1016685": { # sample id of the conversation, the annotation can be found in the corresponding annotation file
-        "answer": "no", # The answer that is consistent with the image
-        "modified_answer": "yes", # The hallucinatory answer that is consistent with the modified fact sentence
-        "context_list": [ # the conversation strucure 
+"1016685": { // sample id of the conversation, the annotation can be found in the corresponding annotation file
+        "answer": "no", // The answer that is consistent with the image
+        "modified_answer": "yes", // The hallucinatory answer that is consistent with the modified fact sentence
+        "context_list": [ // the conversation strucure 
             {
                 "role": "user",
                 "type": "image",
-                "content": "2380767" # image id of the input image
+                "content": "2380767" // image id of the input image
             },
             {
                 "role": "user",
@@ -71,7 +71,7 @@ The structure of one sample in `utterance_{evaluation_task}_{conversation_settin
             {
                 "role": "user",
                 "type": "text",
-                "content": "Is there a tree in this image? Please answer the question using a single word or phrase." # The final evaluated user question
+                "content": "Is there a tree in this image? Please answer the question using a single word or phrase." // The final evaluated user question
             }
         ]
     },
@@ -85,10 +85,10 @@ Our curated evaluation dataset contains 4,973 data samples. The detailed sample 
 To evaluate one LVLM with our MMhalsnowball, you can utilize the annotation file and the corresponding utterance as the input to generate model responses. The response should be a JSON file, where the structure for one single sample should contain the following keys and values:
 ```json
     {
-        "sample_id": "1016685",  # the sample id
-        "original_answer": "no", # Adopted value of key 'answer' from utterance file
-        "modified_answer": "yes", # Adopted value of key 'modified_answer' from utterance file
-        "generated_answer": "Yes", # model generated response
+        "sample_id": "1016685",  // the sample id
+        "original_answer": "no", // Adopted value of key 'answer' from utterance file
+        "modified_answer": "yes", // Adopted value of key 'modified_answer' from utterance file
+        "generated_answer": "Yes", // model generated response
     },
 ```
 The model response should be put under the `evaluation/generation_results/{model_name}` folder:
@@ -154,5 +154,3 @@ python -m evaluation.eval \
 	--eval-criteria "containing" \ # matching option or phrase, choosing from option and containing
 	--single-filename file_path_to_the_target_file # filename for the single file to be evaluated
 ```
-
-
