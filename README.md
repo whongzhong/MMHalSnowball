@@ -33,7 +33,7 @@ data
 ```
 Note that our curated conversation utterances and questions for each conversation setting are under the `evaluation/data/utterance` folder.
 The annotation structure of one sample in `{task}_test.json` is as follows:
-```json
+```shell
     {
         "question": "Is there a tree in this image?",
         "imageId": "2380767", // image id from the GQA dataset
@@ -48,7 +48,7 @@ The annotation structure of one sample in `{task}_test.json` is as follows:
     },
 ```
 The structure of one sample in `utterance_{evaluation_task}_{conversation_setting}_{prompt_setting}.json` is as follows:
-```json
+```shell
 "1016685": { // sample id of the conversation, the annotation can be found in the corresponding annotation file
         "answer": "no", // The answer that is consistent with the image
         "modified_answer": "yes", // The hallucinatory answer that is consistent with the modified fact sentence
@@ -83,7 +83,7 @@ Our curated evaluation dataset contains 4,973 data samples. The detailed sample 
 <img width="629" alt="image" src="https://github.com/whongzhong/MMHalSnowball/assets/40679859/13e71b7a-dfd1-4647-ac66-fc1ccb19a2dc">
 ### 2.2 Generate Model Responses
 To evaluate one LVLM with our MMhalsnowball, you can utilize the annotation file and the corresponding utterance as the input to generate model responses. The response should be a JSON file, where the structure for one single sample should contain the following keys and values:
-```json
+```shell
     {
         "sample_id": "1016685",  // the sample id
         "original_answer": "no", // Adopted value of key 'answer' from utterance file
@@ -154,3 +154,4 @@ python -m evaluation.eval \
 	--eval-criteria "containing" \ # matching option or phrase, choosing from option and containing
 	--single-filename file_path_to_the_target_file # filename for the single file to be evaluated
 ```
+
