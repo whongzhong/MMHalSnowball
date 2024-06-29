@@ -7,13 +7,13 @@ Though advanced in understanding visual information with human languages, Large 
 ## 1 Data Preparation
 1. Clone this repo.
 ```shell
-git clone https:#github.com/whongzhong/MMHalSnowball.git
+git clone https://github.com/whongzhong/MMHalSnowball.git
 cd ./MMHalSnowball
 ```
-2. Download the raw images from [GQA](https:#cs.stanford.edu/people/dorarad/gqa/download.html)
+2. Download the raw images from [GQA](https://cs.stanford.edu/people/dorarad/gqa/download.html)
 ```shell
 cd ./evaluation
-wget https:#downloads.cs.stanford.edu/nlp/data/gqa/images.zip
+wget https://downloads.cs.stanford.edu/nlp/data/gqa/images.zip
 unzip images.zip
 cd ..
 ```
@@ -80,7 +80,7 @@ The structure of one sample in `utterance_{evaluation_task}_{conversation_settin
 ## 2 Evaluation
 ### 2.1 Dataset Statistics
 Our curated evaluation dataset contains 4,973 data samples. The detailed sample distribution is as follows:
-<img width="629" alt="image" src="https:#github.com/whongzhong/MMHalSnowball/assets/40679859/13e71b7a-dfd1-4647-ac66-fc1ccb19a2dc">
+<img width="629" alt="image" src="https://github.com/whongzhong/MMHalSnowball/assets/40679859/13e71b7a-dfd1-4647-ac66-fc1ccb19a2dc">
 ### 2.2 Generate Model Responses
 To evaluate one LVLM with our MMhalsnowball, you can utilize the annotation file and the corresponding utterance as the input to generate model responses. The response should be a JSON file, where the structure for one single sample should contain the following keys and values:
 ```shell
