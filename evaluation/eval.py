@@ -191,9 +191,12 @@ if __name__ == "__main__":
     parser.add_argument("--dict-path", type=str, default="yourdictpath")
     parser.add_argument("--key", type=str, default="generated_answer_key")
     parser.add_argument("--wpi-task", action='store_true')
+    parser.add_argument("--eval-single-file", action='store_true')
+    parser.add_argument("--single-filename", type=str, default="filename for the single file to be evaluated")
+    parser.add_argument("--eval-criteria", type=str, default="containing", help="matching option or phrase, choosing from option and containing")
     args = parser.parse_args()
     
-    if not args.wpi_task:
+    if not args.wpi_task and not args.eval_single_file:
         with open(args.dict_path, 'r') as f:
             samples = json.load(f)
             for sample in samples:
@@ -219,6 +222,10 @@ if __name__ == "__main__":
                 counting_flip(args.file_path, a_file_name, b_file_name, criterion=conversation_prefix[2], prefix=args.prefix, tag_list=tag_list, key=args.key)
             except FileNotFoundError as e:
                 pass
+    elif args.eval_single_file:
+        file_name = args.single_filename
+        a_acc, a_modified_acc = eval_generated_answer(args.file_path, file_name, args.eval_criteria, key=args.key)
+        print(f"accuracy for file {file_name}: {a_acc}")
     else:
         file_name = args.prefix + "utterance_wpi_factconv_choice" + ".json"
         a_acc, a_modified_acc = eval_generated_answer(args.file_path, file_name, "option", key=args.key)
