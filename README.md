@@ -1,6 +1,6 @@
 # Investigating and Mitigating the Multimodal Hallucination Snowballing in Large Vision-Language Models
 
-This repository contains the resource for our paper [Investigating and Mitigating the Multimodal Hallucination Snowballing in Large Vision-Language Models (ACL 2024)]()
+This repository contains the resource for our paper [Investigating and Mitigating the Multimodal Hallucination Snowballing in Large Vision-Language Models (ACL 2024)](https://www.arxiv.org/abs/2407.00569)
 
 Though advanced in understanding visual information with human languages, Large Vision-Language Models (LVLMs) still suffer from multimodal hallucinations. A natural concern is that during multimodal interaction, the generated hallucinations could influence the LVLMs' subsequent generation. Thus, we raise a question: *When presented with a query relevant to the previously generated hallucination, will LVLMs be misled and respond incorrectly, even though the ground visual information exists?* To answer this, we propose a framework called *MMHalSnowball* to evaluate LVLMs' behaviors when encountering generated hallucinations, where LVLMs are required to answer specific visual questions within a curated hallucinatory conversation. Crucially, our experiment shows that the performance of open-source LVLMs drops by at least 31%, indicating that LVLMs are prone to accept the generated hallucinations and make false claims that they would not have supported without distractions. We term this phenomenon *Multimodal Hallucination Snowballing*. To mitigate this, we further propose a training-free method called *Residual Visual Decoding*, where we revise the output distribution of LVLMs with the one derived from the residual visual input, providing models with direct access to the visual information. Experiments show that our method can mitigate more than 24% of the snowballed multimodal hallucination while maintaining capabilities.
 
@@ -153,4 +153,18 @@ python -m evaluation.eval \
 	--eval-single-file \ # evaluate for a single file
 	--eval-criteria "containing" \ # matching option or phrase, choosing from option and containing
 	--single-filename file_path_to_the_target_file # filename for the single file to be evaluated
+```
+
+## Citation
+If you find our paper useful, please cite our paper:
+```bibtex
+@misc{zhong2024investigating,
+      title={Investigating and Mitigating the Multimodal Hallucination Snowballing in Large Vision-Language Models}, 
+      author={Weihong Zhong and Xiaocheng Feng and Liang Zhao and Qiming Li and Lei Huang and Yuxuan Gu and Weitao Ma and Yuan Xu and Bing Qin},
+      year={2024},
+      eprint={2407.00569},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2407.00569}, 
+}
 ```
