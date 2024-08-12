@@ -12,7 +12,7 @@ cd ./MMHalSnowball
 ```
 2. Download the raw images from [GQA](https://cs.stanford.edu/people/dorarad/gqa/download.html)
 ```shell
-cd ./evaluation
+cd ./evaluation/data
 wget https://downloads.cs.stanford.edu/nlp/data/gqa/images.zip
 unzip images.zip
 cd ..
@@ -80,7 +80,9 @@ The structure of one sample in `utterance_{evaluation_task}_{conversation_settin
 ## 2 Evaluation
 ### 2.1 Dataset Statistics
 Our curated evaluation dataset contains 4,973 data samples. The detailed sample distribution is as follows:
+
 <img width="629" alt="image" src="https://github.com/whongzhong/MMHalSnowball/assets/40679859/13e71b7a-dfd1-4647-ac66-fc1ccb19a2dc">
+
 ### 2.2 Generate Model Responses
 To evaluate one LVLM with our MMhalsnowball, you can utilize the annotation file and the corresponding utterance as the input to generate model responses. The response should be a JSON file, where the structure for one single sample should contain the following keys and values:
 ```shell
@@ -91,7 +93,7 @@ To evaluate one LVLM with our MMhalsnowball, you can utilize the annotation file
         "generated_answer": "Yes", # model generated response
     },
 ```
-The model response should be put under the `evaluation/generation_results/{model_name}` folder:
+The model response can be put under the `evaluation/generation_results/{model_name}` folder:
 ```shell
 generation_results
 └── LLaVA1.5-7B # model_name
@@ -104,7 +106,6 @@ generation_results
     │   ├── generated_file_utterance_mmhalsnowball_halluconv_question.json
     │   └── generated_file_utterance_mmhalsnowball_irrelevant_formatting.json
     └── wpi # generated responses for WPI task 
-        ├── generated_file_utterance_nocontextword_choice.json
         └── generated_file_utterance_wpi_factconv_choice.json
 ```
 ### 2.3 Evaluation
@@ -154,8 +155,144 @@ python -m evaluation.eval \
 	--eval-criteria "containing" \ # matching option or phrase, choosing from option and containing
 	--single-filename file_path_to_the_target_file # filename for the single file to be evaluated
 ```
+## 3 Residual Visual Decoding
+### 3.1 Requirements
+Please install the requirements following the specific LVLM. In the following Sections, we use [LLaVA](https://github.com/haotian-liu/LLaVA) as an example.
+### 3.2 Integrating into LVLMs
+We follow [VCD](https://github.com/DAMO-NLP-SG/VCD/tree/master) to integrate our *Residual Visual Decoding* into LVLMs. We illustrate the steps to modify the LVLMs:
+First, replacing the original sampling function with our method by adding the following code to the main script:
+```python
+from residual_visual_decoding.rvd_sample import evolve_rvd_sampling
+evolve_rvd_sampling()
+```
+Second, adding necessary parameters in the model `forward` function. For LLaVA, it's in `llava_llama.py`:
+```python
+adb_input_ids: Optional[torch.LongTensor] = None,
+adb: Optional[bool] = None,
+rvd_input_ids: Optional[torch.LongTensor] = None,
+rvd: Optional[bool] = None,
+rvd_alpha: Optional[Float] = None,
+```
+Third, updating the hyperparameter in the `generate` function:
+```python
+parser.add_argument('--rvd', action='store_true')
+parser.add_argument('--blind-rvd', action='store_true')
+parser.add_argument('--rvd-alpha', type=float, default=0)
+parser.add_argument('--rvd-beta', type=float, default=2.0)
+args = parser.parse_args()
 
-## Citation
+output_ids = model.generate(
+	input_ids,
+	rvd_input_ids = rvd_input_ids,
+	adb_input_ids = adb_input_ids,
+	adb = args.adb,
+	rvd = args.rvd,
+	rvd_alpha = args.rvd_alpha,
+	rvd_beta = args.rvd_beta,
+	images=sample['image_tensor'].to(dtype=torch.float16, device='cuda', non_blocking=True),
+	do_sample=True,
+	temperature=args.temperature,
+	top_p=args.top_p,
+	num_beams=args.num_beams,
+	max_new_tokens=args.max_new_tokens,
+	use_cache=True)
+```
+Fourth, updating parameters for model's `forward()` function so that these added parameters can be input. For LLaVA, it's in `LlavaLlamaForCausalLM`:
+```python
+def forward(
+	...
+	rvd_input_ids = None,
+	adb_input_ids = None,
+    adb = None,
+    rvd = None,
+    rvd_alpha = None,
+    rvd_beta = None,
+    ...
+) -> Union[Tuple, CausalLMOutputWithPast]:
+```
+fifth, customizing the `__getitem__` function in the dataset to provide *residual visual inputs* and *blind inputs* for *Adaptive Distribution Blending*. The corresponding inputs are $(v,x)$ and $(x)$, respectively, and the original input is $(v,h,x)$. Note that $v,h,x$ represents *visual input*, *dialog history*, and *current text query*.  
+We use our MMhalsnowball evaluation dataset for LLaVA as an example. Note that we wrote functions to help *convert our conversations in the evaluation dataset* into the LLaVA format:
+```python
+def convert_conversation(self, conversation_list):
+
+    converted_conversation_list = []
+    image_tensor = None
+    for single_utterance in conversation_list:
+        if single_utterance['type'] == 'text': converted_conversation_list.append(self.construct_single_line(single_utterance))
+        elif single_utterance['type'] == "image":
+            image_tensor = self.construct_single_line(single_utterance)
+        
+    return image_tensor, converted_conversation_list
+
+def construct_single_line(self, message):
+    # return with (role, message)
+    if message['type'] == 'text':
+        return [self.label_dict[message['role']], message['content']]
+    
+    # return processed image only
+    elif message['type'] == "image":
+        image = Image.open(os.path.join(self.image_folder, message['content'] + ".jpg")).convert('RGB')
+        image_tensor = process_images([image], self.image_processor, self.model_config)[0]
+    return image_tensor
+    
+def __getitem__(self, index):
+    line = self.questions[index]
+
+    # Incorporating and assembling the conversation
+    context_dict = self.conversation_dict[line['sample_id']]
+    conversation = context_dict['context_list']
+    answer = context_dict['answer']
+    modified_answer = context_dict['modified_answer']
+    conv = conv_templates[args.conv_mode].copy()
+    image_tensor, conversation_list = self.convert_conversation(conversation)
+
+    # prepare raw input for Residual Visual Input and Blind Input (for Adaptive Distribution Blending)
+    # Copy the conversation with the query only, omitting the dialog history
+    rvd_list = [conversation_list[-1].copy()]
+    adb_list = [conversation_list[-1].copy()]
+    if self.model_config.mm_use_im_start_end:
+        # for Residual Visual Input, prepend the visual information, the same as the original input
+        # for blind input prepared for Adaptive Distribution Blending, we do not provide image information
+        rvd_list[0][1] = DEFAULT_IM_START_TOKEN + DEFAULT_IMAGE_TOKEN + DEFAULT_IM_END_TOKEN + '\n' + rvd_list[0][1]
+        conversation_list[0][1] = DEFAULT_IM_START_TOKEN + DEFAULT_IMAGE_TOKEN + DEFAULT_IM_END_TOKEN + '\n' + conversation_list[0][1]
+    else:
+        rvd_list[0][1] = DEFAULT_IMAGE_TOKEN + '\n' + rvd_list[0][1]
+        conversation_list[0][1] = DEFAULT_IMAGE_TOKEN + '\n' + conversation_list[0][1]
+        
+    # initializing
+    rvd_conv = conv_templates[args.conv_mode].copy()
+    adb_conv = conv_templates[args.conv_mode].copy()
+
+    # converting the input format
+    for context in rvd_list:
+        rvd_conv.append_message(context[0], context[1])
+        
+    rvd_conv.append_message(rvd_conv.roles[1], None)
+    rvd_prompt = rvd_conv.get_prompt()
+    
+    
+    for context in adb_list:
+        adb_conv.append_message(context[0], context[1])
+    adb_conv.append_message(adb_conv.roles[1], None)
+    adb_prompt = adb_conv.get_prompt()
+        
+    for context in conversation_list:
+        conv.append_message(context[0], context[1])
+
+    conv.append_message(conv.roles[1], None)
+    
+    prompt = conv.get_prompt()
+
+    # generating input ids
+    input_ids = tokenizer_image_token(prompt, self.tokenizer, IMAGE_TOKEN_INDEX, return_tensors='pt')
+    rvd_input_ids = tokenizer_image_token(rvd_prompt, self.tokenizer, IMAGE_TOKEN_INDEX, return_tensors='pt')
+    adb_input_ids = tokenizer_image_token(adb_prompt, self.tokenizer, IMAGE_TOKEN_INDEX, return_tensors='pt')
+    
+    return {'input_ids': input_ids, 'image_tensor': image_tensor, 'answer': answer, 'modified_answer': modified_answer, 'rvd_input_ids': rvd_input_ids, 'adb_input_ids': adb_input_ids}
+```
+### 3.3 Inference with RVD
+You can run inference with the following script following examples in `residual_visual_decoding/LLaVA/llava_rvd_mmhalsnowball_inf.sh` and  `residual_visual_decoding/LLaVA/llava_rvd_wpi_inf.sh`
+## 4 Citation
 If you find our paper useful, please cite our paper:
 ```bibtex
 @misc{zhong2024investigating,
